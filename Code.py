@@ -36,8 +36,8 @@ try:
         global humidity, temperature, dim, end_time, elapsed_time, start_time, yaxis1, yaxis2, yaxis3, xaxis, ot
         end_time = time.time()
         elapsed_time = end_time - start_time
-        xaxis.append(ot+elapsed_time)
-        ot=elapsed_time
+        xaxis.append(int(ot+elapsed_time))
+        ot=int(elapsed_time)
         humidity = 9
         temperature = 20
         yaxis1.append(humidity)
@@ -58,11 +58,14 @@ try:
                 sleep (2) # Wait before retrying
                 print("Sensor failure. Check wiring.")
     def plot():
-        
-        plt.plot(xaxis, yaxis1, color='r')
-        plt.plot(xaxis, yaxis2, color='r')
-        plt.plot(xaxis, yaxis3, color='r')
-        plt.show()
+        plt.figure()
+        plt.plot(xaxis, yaxis1, color='r', label='Humidity')
+        plt.plot(xaxis, yaxis2, color='b', label='Temperature')
+        plt.xlabel('Elapsed Time (seconds)')
+        plt.ylabel('Values')
+        plt.title('Sensor Data Over Time')
+        plt.legend()
+        plt.show()  # Display the plot
     while True:
         blynk.run()
         updatevariables()
@@ -73,4 +76,6 @@ try:
 except KeyboardInterrupt:
     print("Interrupted by user")
 finally:
+    print(xaxis)
+    print(yaxis1)
     plot()
