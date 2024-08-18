@@ -1,15 +1,14 @@
-#import board
+import board
 import blynklib
-#import adafruit_dht
+import adafruit_dht
 from time import sleep
 import time
 import matplotlib.pyplot as plt
 from datetime import datetime
-#import RPi.GPIO as GPIO
 start_time = time.time()
 ot=0
 try:
-    #th_sensor = adafruit_dht.DHT11(board.D27)
+    th_sensor = adafruit_dht.DHT11(board.D27)
     blynk = blynklib.Blynk("mVkujtgml2vx5D25IT1jQUBOxhgRLnXw", server="blynk.cloud", port=80)
     humidity = None
     temperature = None
@@ -38,8 +37,8 @@ try:
         elapsed_time = end_time - start_time
         xaxis.append(int(ot+elapsed_time))
         ot=int(elapsed_time)
-        humidity = 9
-        temperature = 20
+        humidity = th_sensor.humidity
+        temperature = th_sensor.temerature
         yaxis1.append(humidity)
         yaxis2.append(temperature)
         #dim = 
