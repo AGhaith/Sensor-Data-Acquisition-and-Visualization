@@ -5,6 +5,7 @@ from time import sleep
 import time
 import matplotlib.pyplot as plt
 from datetime import datetime
+import gpiozero as GPIO
 start_time = time.time()
 ot=0
 try:
@@ -18,15 +19,15 @@ try:
     yaxis3=[]
     xaxis=[]
     try:
-        logp = open("log.txt", 'x')
+        logp = open("C:\\Users\\Ahmed\\Documents\\GitHub\\Sensor-Data-Acquisition-and-Visualization\\log.txt", 'x')
         print("there was no previous log file so it has been created")
         logp.close()
     except:
         print("file is already there")
 
     def log() :
-        logp = open("log.txt",'a')
-        status = f"{datetime.now().strftime('%Y-%B-%d\t%A %I:%M:%S %p')}\nThe Current Temperature is {temperature}C\n The Current Humidity is {humidity}%\nThe Current Distance in meter is {dim}\n\n"
+        logp = open("C:\\Users\\Ahmed\\Documents\\GitHub\\Sensor-Data-Acquisition-and-Visualization\\log.txt",'a')
+        status = f"{datetime.now().strftime('%Y-%B-%d\t%A %I:%M:%S %p')}\nThe Current Temperature is {temperature}C\nThe Current Humidity is {humidity}%\nThe Current Distance in meter is {dim}\n\n"
         logp.write(status)
         logp.close()
         print("logs sent and saved successfully")
