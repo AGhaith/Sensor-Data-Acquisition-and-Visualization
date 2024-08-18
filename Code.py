@@ -42,6 +42,7 @@ try:
         temperature = th_sensor.temerature
         yaxis1.append(humidity)
         yaxis2.append(temperature)
+        yaxis3.append(dim)
         #dim = 
         print (f"Temp= {temperature}C Humidity= {humidity}%")
     
@@ -51,6 +52,7 @@ try:
                 print("Trying to connect")
                 blynk.virtual_write(0, humidity) 
                 blynk.virtual_write(1, temperature)
+                blynk.virtual_write(2, dim)
                 print('Values Sent to server')
                 return
             except RuntimeError as error :
@@ -61,6 +63,7 @@ try:
         plt.figure()
         plt.plot(xaxis, yaxis1, color='r', label='Humidity')
         plt.plot(xaxis, yaxis2, color='b', label='Temperature')
+        plt.plot(xaxis, yaxis3, color='g', label='Distance')
         plt.xlabel('Elapsed Time (seconds)')
         plt.ylabel('Values')
         plt.title('Sensor Data Over Time')
