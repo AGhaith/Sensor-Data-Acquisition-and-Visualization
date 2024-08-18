@@ -1,0 +1,5 @@
+2024-August-19	Monday 01:02:12 AM
+The Current Temperature is 20C
+The Current Humidity is 9%
+The Current Distance in meter is None
+
