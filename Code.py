@@ -44,7 +44,7 @@ try:
         yaxis2.append(temperature)
         yaxis3.append(dim)
         #dim = 
-        print (f"Temp= {temperature}C Humidity= {humidity}%")
+        print (f"Temp = {temperature}C \nHumidity = {humidity}% \nDistance = {dim}%")
     
     def th_blynk():
         for l in range(5):
