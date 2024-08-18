@@ -9,7 +9,7 @@ import gpiozero as GPIO
 start_time = time.time()
 ot=0
 try:
-    th_sensor = adafruit_dht.DHT11(board.D27)
+    th_sensor = adafruit_dht.DHT11(board.D14)
     blynk = blynklib.Blynk("mVkujtgml2vx5D25IT1jQUBOxhgRLnXw", server="blynk.cloud", port=80)
     humidity = None
     temperature = None
