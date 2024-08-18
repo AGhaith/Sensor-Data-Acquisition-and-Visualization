@@ -2,10 +2,12 @@
 import blynklib
 #import adafruit_dht
 from time import sleep
+import time
 import matplotlib.pyplot as plt
 from datetime import datetime
 #import RPi.GPIO as GPIO
-
+start_time = time.time()
+ot=0
 try:
     #th_sensor = adafruit_dht.DHT11(board.D27)
     blynk = blynklib.Blynk("mVkujtgml2vx5D25IT1jQUBOxhgRLnXw", server="blynk.cloud", port=80)
@@ -18,6 +20,7 @@ try:
     xaxis=[]
     try:
         logp = open("log.txt", 'x')
+        print("there was no previous log file so it has been created")
         logp.close()
     except:
         print("file is already there")
@@ -30,11 +33,15 @@ try:
         print("logs sent and saved successfully")
     
     def updatevariables():
-        global humidity, temperature, dim
+        global humidity, temperature, dim, end_time, elapsed_time, start_time, yaxis1, yaxis2, yaxis3, xaxis, ot
+        end_time = time.time()
+        elapsed_time = end_time - start_time
+        xaxis.append(ot+elapsed_time)
+        ot=elapsed_time
         humidity = 9
         temperature = 20
-        #xaxis=#time
         yaxis1.append(humidity)
+        yaxis2.append(temperature)
         #dim = 
         print (f"Temp= {temperature}C Humidity= {humidity}%")
     
@@ -51,9 +58,11 @@ try:
                 sleep (2) # Wait before retrying
                 print("Sensor failure. Check wiring.")
     def plot():
+        
         plt.plot(xaxis, yaxis1, color='r')
         plt.plot(xaxis, yaxis2, color='r')
         plt.plot(xaxis, yaxis3, color='r')
+        plt.show()
     while True:
         blynk.run()
         updatevariables()
