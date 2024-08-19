@@ -6,10 +6,15 @@ import time
 import matplotlib.pyplot as plt
 from datetime import datetime
 import gpiozero as GPIO
+from gpiozero import DistanceSensor
+from time import sleep
+
+
 start_time = time.time()
 ot=0
 try:
     th_sensor = adafruit_dht.DHT11(board.D14)
+    ultrasonic = DistanceSensor(echo=17, trigger=27)
     blynk = blynklib.Blynk("mVkujtgml2vx5D25IT1jQUBOxhgRLnXw", server="blynk.cloud", port=80)
     humidity = None
     temperature = None
@@ -19,14 +24,14 @@ try:
     yaxis3=[]
     xaxis=[]
     try:
-        logp = open("C:\\Users\\Ahmed\\Documents\\GitHub\\Sensor-Data-Acquisition-and-Visualization\\log.txt", 'x')
+        logp = open("log.txt", 'x')
         print("there was no previous log file so it has been created")
         logp.close()
     except:
         print("file is already there")
 
     def log() :
-        logp = open("C:\\Users\\Ahmed\\Documents\\GitHub\\Sensor-Data-Acquisition-and-Visualization\\log.txt",'a')
+        logp = open("log.txt",'a')
         status = f"{datetime.now().strftime('%Y-%B-%d\t%A %I:%M:%S %p')}\nThe Current Temperature is {temperature}C\nThe Current Humidity is {humidity}%\nThe Current Distance in meter is {dim}\n\n"
         logp.write(status)
         logp.close()
@@ -40,10 +45,10 @@ try:
         ot=int(elapsed_time)
         humidity = th_sensor.humidity
         temperature = th_sensor.temerature
+        dim = ultrasonic.distance * 100 
         yaxis1.append(humidity)
         yaxis2.append(temperature)
         yaxis3.append(dim)
-        #dim = 
         print (f"Temp = {temperature}C \nHumidity = {humidity}% \nDistance = {dim}%")
     
     def th_blynk():
@@ -81,4 +86,5 @@ except KeyboardInterrupt:
 finally:
     print(xaxis)
     print(yaxis1)
+    print(yaxis2)
     plot()
