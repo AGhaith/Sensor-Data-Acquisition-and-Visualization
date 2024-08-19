@@ -5,6 +5,8 @@ First, create a virtual environment to manage your Python packages:
 python3 -m venv myenv
 source myenv/bin/activate
 
+sudo apt-get update
+sudo apt-get install build-essential python-dev-is-python3
 
 
 Installing RPi.GPIO:
