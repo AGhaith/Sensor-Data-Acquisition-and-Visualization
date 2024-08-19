@@ -1,0 +1,29 @@
+if you encounter externally managed error Create and Activate a Virtual Environment
+First, create a virtual environment to manage your Python packages:
+
+
+python3 -m venv myenv
+source myenv/bin/activate
+
+sudo apt-get update
+sudo apt-get install build-essential python-dev-is-python3
+
+
+Installing RPi.GPIO:
+
+pip install RPi.GPIO
+
+Installing Matplotlib:
+
+pip install matplotlib
+
+Installing Board:
+
+pip install Board
+
+installing AdaFruit_DHT:
+
+git clone https://github.com/adafruit/Adafruit_Python_DHT.git
+cd Adafruit_Python_DHT
+python setup.py install --force-pi
+pip install adafruit-circuitpython-dht --break-system-packages
