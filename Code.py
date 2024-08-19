@@ -43,13 +43,17 @@ try:
         elapsed_time = end_time - start_time
         xaxis.append(int(ot+elapsed_time))
         ot=int(elapsed_time)
-        humidity = th_sensor.humidity
-        temperature = th_sensor.temerature
-        dim = ultrasonic.distance * 100 
+        humidity = int(th_sensor.humidity)
+        temperature = int(th_sensor.temerature)
+        dim = int(ultrasonic.distance * 100) 
+        humidity = 5  
+        temperature = 2
+        dim = 10
+ 
         yaxis1.append(humidity)
         yaxis2.append(temperature)
         yaxis3.append(dim)
-        print (f"Temp = {temperature}C \nHumidity = {humidity}% \nDistance = {dim}%")
+        print (f"Temp = {temperature}C \nHumidity = {humidity}% \nDistance = {dim}cm")
     
     def th_blynk():
         for l in range(5):
